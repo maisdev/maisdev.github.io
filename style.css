@@ -21,21 +21,6 @@
         display: block; /* Make each link a block element to place them in a list */
         margin-bottom: 10px; /* Add space between links */
     }
-
-@media (orientation: landscape) {
-    .scroll-message {
-        font-size: 1rem;
-    }
-    
-    .links {
-        font-size: 1rem;
-    }
-
-    .circle {
-        display: none; /* Hide the circle cursor on mobile */
-    }
-
-    }
 }
 
 
