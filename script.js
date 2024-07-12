@@ -21,19 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
             links.style.opacity = '0';
         }
         setTimeout(() => {
-            isAnimating = true;
+            isAnimating = false;
         }, 1000); // duration of transition
     }
-
-    document.addEventListener('wheel', function(e) {
-        if (e.deltaY > 0 && currentPage < 2) {
-            currentPage++;
-            updateActivePage(currentPage);
-        } else if (e.deltaY < 0 && currentPage > 1) {
-            currentPage--;
-            updateActivePage(currentPage);
-        }
-    });
 
     const typewriterText = document.getElementById('typewriter-text');
     const texts = ['aspiring data scientist developer', 'genius, billionaire, playboy, philanthropist', 'sochi - GMT+3'];
@@ -65,8 +55,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     type();
-});
 
+    // Add touch event for mobile devices
+    document.addEventListener('touchstart', function() {
+        if (currentPage < 2) {
+            currentPage++;
+            updateActivePage(currentPage);
+        } else if (currentPage > 1) {
+            currentPage--;
+            updateActivePage(currentPage);
+        }
+    });
+
+    // Add mouse wheel event for desktop
+    document.addEventListener('wheel', function(e) {
+        if (e.deltaY > 0 && currentPage < 2) {
+            currentPage++;
+            updateActivePage(currentPage);
+        } else if (e.deltaY < 0 && currentPage > 1) {
+            currentPage--;
+            updateActivePage(currentPage);
+        }
+    });
+});
 
 console.clear();
 
@@ -100,7 +111,7 @@ const tick = () => {
     const scaleTransform = `scale(${1 + currentScale}, ${1 - currentScale})`;
     const angle = Math.atan2(deltaMouseY, deltaMouseX) * 180 / Math.PI;
     if (mouseVelocity > 20) {
-    currentAngle = angle;
+        currentAngle = angle;
     }
     const rotateTransform = `rotate(${currentAngle}deg)`;
     circleElement.style.transform = `${translateTransform} ${rotateTransform} ${scaleTransform}`;

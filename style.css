@@ -1,3 +1,41 @@
+/* Add media queries for responsive design */
+@media (max-width: 768px) {
+    .scroll-message {
+        font-size: 1rem;
+    }
+    
+    .links {
+        font-size: 1rem;
+    }
+
+    .circle {
+        display: none; /* Hide the circle cursor on mobile */
+    }
+
+    .scroll::before {
+        content: '[tap to proceed.]'; /* Change scroll message on mobile */
+    }
+}
+
+@media (orientation: landscape) {
+    .scroll-message {
+        font-size: 1rem;
+    }
+    
+    .links {
+        font-size: 1rem;
+    }
+
+    .circle {
+        display: none; /* Hide the circle cursor on mobile */
+    }
+
+    .scroll::before {
+        content: '[tap to proceed.]'; /* Change scroll message on mobile */
+    }
+}
+
+/* General styles */
 *,
 *:before,
 *:after {
@@ -211,8 +249,6 @@ a:hover {
     font-size: 2rem;
     font-weight: 400;
 }
-
-
 
 body, html {
     margin: 0;
