@@ -13,10 +13,11 @@
     a {
         display: block;
         text-align: center;
+        
     }
 
     .Typewriter__wrapper {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
     }
 
     .montserrat-fonts {
