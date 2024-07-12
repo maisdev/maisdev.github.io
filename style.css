@@ -1,11 +1,11 @@
 /* Add media queries for responsive design */
 @media (max-width: 768px) {
     .scroll-message {
-        display: none; /* Hide the scroll message on mobile */
+        font-size: 0.8rem;
     }
-
+    
     .links {
-        font-size: 1rem;
+        font-size: 0.8rem;
         display: block; /* Ensure links are displayed in block format for stacking */
         text-align: center;
         padding: 0;
@@ -13,10 +13,6 @@
 
     .circle {
         display: none; /* Hide the circle cursor on mobile */
-    }
-
-    .scroll::before {
-        content: '[tap to proceed.]'; /* Change scroll message on mobile */
     }
 
     .links a {
@@ -27,11 +23,11 @@
 
 @media (orientation: landscape) {
     .scroll-message {
-        display: none; /* Hide the scroll message on landscape mobile */
+        font-size: 0.8rem;
     }
-
+    
     .links {
-        font-size: 1rem;
+        font-size: 0.8rem;
         display: block; /* Ensure links are displayed in block format for stacking */
         text-align: center;
         padding: 0;
@@ -39,10 +35,6 @@
 
     .circle {
         display: none; /* Hide the circle cursor on mobile */
-    }
-
-    .scroll::before {
-        content: '[tap to proceed.]'; /* Change scroll message on mobile */
     }
 
     .links a {
@@ -197,8 +189,6 @@ body {
     font-weight: 300;
     font-size: 1.2rem;
     opacity: 0;
-    display: flex;
-    flex-direction: column; /* Arrange links in a column by default */
 }
 
 a {
