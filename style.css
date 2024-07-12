@@ -1,45 +1,37 @@
 /* Add media queries for responsive design */
 @media (max-width: 768px) {
     .scroll-message {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     
     .links {
-        font-size: 0.8rem;
-        display: block; /* Ensure links are displayed in block format for stacking */
-        text-align: center;
-        padding: 0;
+        font-size: 1rem;
     }
 
     .circle {
         display: none; /* Hide the circle cursor on mobile */
     }
 
-    .links a {
-        display: block; /* Make each link a block element to place them in a list */
-        margin-bottom: 10px; /* Add space between links */
+    .scroll::before {
+        content: '[tap to proceed.]'; /* Change scroll message on mobile */
     }
 }
 
 @media (orientation: landscape) {
     .scroll-message {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     
     .links {
-        font-size: 0.8rem;
-        display: block; /* Ensure links are displayed in block format for stacking */
-        text-align: center;
-        padding: 0;
+        font-size: 1rem;
     }
 
     .circle {
         display: none; /* Hide the circle cursor on mobile */
     }
 
-    .links a {
-        display: block; /* Make each link a block element to place them in a list */
-        margin-bottom: 10px; /* Add space between links */
+    .scroll::before {
+        content: '[tap to proceed.]'; /* Change scroll message on mobile */
     }
 }
 
