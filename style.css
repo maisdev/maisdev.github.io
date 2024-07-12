@@ -14,6 +14,15 @@
         display: block;
         text-align: center;
     }
+
+    .Typewriter__wrapper {
+        font-size: 1.5rem;
+    }
+
+    .montserrat-fonts {
+        font-weight: 300;
+    }
+    
     .circle {
         display: none; /* Hide the circle cursor on mobile */
     }
