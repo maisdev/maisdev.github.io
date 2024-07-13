@@ -17,7 +17,8 @@
     }
 
     .Typewriter__wrapper {
-        display: none; /* Hide the typewriter text on mobile devices */
+        display: none;
+        font-size: 0rem;/* Hide the typewriter text on mobile devices */
     }
 
     .montserrat-fonts {
