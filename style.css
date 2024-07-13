@@ -8,12 +8,14 @@
         display: block; /* Ensure links are displayed in block format for stacking */
         text-align: center;
         padding: 2;
+        line-hight: 1.5;
     }
 
     a {
         display: block;
         text-align: center;
         padding: 2;
+        line-hight: 1.5;
         
     }
 
