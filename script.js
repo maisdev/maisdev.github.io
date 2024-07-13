@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             links.style.opacity = '0';
         }
         setTimeout(() => {
-            isAnimating = false;
+            isAnimating = true;
         }, 1000); // duration of transition
     }
 
