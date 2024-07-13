@@ -17,15 +17,8 @@
     }
 
     .Typewriter__wrapper {
-    display: inline-block;
-    white-space: pre-wrap;
-    font-family: "Courier New", monospace;
-    overflow: hidden;
-    font-weight: 500;
-    font-size: 0.5rem;
-    border-right: 1.3px solid rgba(172, 172, 172, 0.75);
-    animation: blink-caret 1s infinite;
-}
+        display: none; /* Hide the typewriter text on mobile devices */
+    }
 
     .montserrat-fonts {
         font-weight: 300;
