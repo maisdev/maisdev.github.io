@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const typewriterText = document.getElementById('typewriter-text');
-    const texts = ['data scientist', 'genius, philanthropist', 'sochi - GMT+3', 'telegram bot developer'];
+    const texts = ['sochi, russia', 'genius, philanthropist', 'sochi - GMT+3', '17 y.o.'];
     let textIndex = 0;
     let charIndex = 0;
     const typingSpeed = 150;
