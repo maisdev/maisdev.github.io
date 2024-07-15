@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 links.style.animation = 'bounceInRight 1s forwards';
                 popupText.style.opacity = '1';
                 links.style.opacity = '1';
-            }, 1000); // 2 seconds delay before starting the animation
+            }, 1000);
         } else {
             popupText.style.opacity = '0';
             links.style.opacity = '0';
         }
         setTimeout(() => {
             isAnimating = true;
-        }, 1000); // duration of transition
+        }, 1000);
     }
 
     const typewriterText = document.getElementById('typewriter-text');
@@ -55,8 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     type();
-
-    // Add touch event for mobile devices
     document.addEventListener('touchstart', function() {
         if (currentPage < 2) {
             currentPage++;
@@ -67,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add mouse wheel event for desktop
     document.addEventListener('wheel', function(e) {
         if (e.deltaY > 0 && currentPage < 2) {
             currentPage++;
@@ -96,7 +93,6 @@ window.addEventListener('mousemove', (e) => {
 
 const speed = 0.17;
 
-// Start animation
 const tick = () => {
     circle.x += (mouse.x - circle.x) * speed;
     circle.y += (mouse.y - circle.y) * speed;
