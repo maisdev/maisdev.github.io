@@ -1,97 +1,56 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const circle = document.querySelector('.circle');
-    const links = document.querySelectorAll('a');
-    let mouseX = -100;
-    let mouseY = -100;
-    let circleX = -100;
-    let circleY = -100;
-    let size = 20;
-    let isSquare = false;
-    const speed = 1;
+    const starsContainer = document.createElement('div');
+    starsContainer.style.position = 'fixed';
+    starsContainer.style.top = '0';
+    starsContainer.style.left = '0';
+    starsContainer.style.width = '100%';
+    starsContainer.style.height = '100%';
+    starsContainer.style.pointerEvents = 'none';
+    starsContainer.style.zIndex = '-1';
+    document.body.appendChild(starsContainer);
 
-    circle.style.opacity = '1';
-    updateCursor();
-    
-    function animate() {
-        let distX = mouseX - circleX;
-        let distY = mouseY - circleY;
-        circleX += distX * speed;
-        circleY += distY * speed;
-        
-        updateCursor();
-        
-        requestAnimationFrame(animate);
-    }
-
-    function updateCursor() {
-        circle.style.left = circleX + 'px';
-        circle.style.top = circleY + 'px';
-        circle.style.width = size + 'px';
-        circle.style.height = size + 'px';
-        const targetBorderRadius = isSquare ? '0%' : '50%';
-        circle.style.borderRadius = targetBorderRadius;
-        circle.style.transition = 'all 0.1s ease-out'; 
-    }
-    
-    links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            size = 30;
-            isSquare = true;
-        });
-        
-        link.addEventListener('mouseleave', () => {
-            size = 20;
-            isSquare = false;
-        });
-    });
-    
-    document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    const starsContainer = document.getElementById('stars');
-    const starCount = 200;
-    
+    const starCount = 50;
     const starPool = [];
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.className = 'star';
+        star.style.width = `${1 + Math.random() * 2}px`;
+        star.style.height = star.style.width;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.opacity = '0';
+        starsContainer.appendChild(star);
         starPool.push(star);
     }
-    
+
+
+    const specialEffectsCount = 3;
     const specialEffectsPool = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < specialEffectsCount; i++) {
         const effect = document.createElement('div');
         effect.className = 'special-effect';
         specialEffectsPool.push(effect);
     }
-    
+
     function activateStar(star) {
-        const size = 0.5 + Math.random() * 2.5;
-        const posX = Math.random() * window.innerWidth;
-        const duration = 10 + Math.random() * 20;
-        const delay = Math.random() * 5;
-        const randomX = (Math.random() - 0.5) * 50;
-        
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        star.style.left = `${posX}px`;
-        star.style.top = `${window.innerHeight}px`;
-        star.style.animation = `float ${duration}s linear ${delay}s forwards`;
-        star.style.setProperty('--random-x', `${randomX}px`);
-        
-        starsContainer.appendChild(star);
+        const duration = 5 + Math.random() * 10;
+        star.style.opacity = '0';
+        star.style.animation = 'none';
+        star.style.transform = 'translateY(0) translateX(0)';
         
         setTimeout(() => {
-            star.style.animation = 'none';
-            if (starsContainer.contains(star)) {
-                starsContainer.removeChild(star);
-            }
-            setTimeout(() => activateStar(star), 100);
-        }, (duration + delay) * 1000);
+            star.style.opacity = '0.8';
+            star.style.animation = `float ${duration}s linear forwards`;
+            star.style.setProperty('--random-x', `${(Math.random() - 0.5) * 100}px`);
+            
+            setTimeout(() => {
+                star.style.animation = 'none';
+                star.style.opacity = '0';
+                setTimeout(() => activateStar(star), Math.random() * 3000);
+            }, duration * 1000);
+        }, Math.random() * 2000);
     }
-    
+
     function activateSpecialEffect() {
         const effect = specialEffectsPool.find(e => !starsContainer.contains(e));
         if (!effect) return;
@@ -161,6 +120,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 200);
     });
-    
-    animate();
 });
