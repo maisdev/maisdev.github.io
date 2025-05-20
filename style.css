@@ -224,80 +224,49 @@ hr {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
+    .box {
+        width: 100%;
+        padding: 40px 20px 20px 20px;
+        font-size: 24px;
+        margin-top: 30px;
+        box-sizing: border-box;
+    }
+
+    .content .blogpost {
+        font-size: 24px;
+        padding: 5%;
+        line-height: 1.8;
+    }
+
+    .blogpost p,
+    .blogpost li {
+        font-size: 24px;
+        line-height: 1.8;
+    }
+
     h1 {
-        font-size: 40px;
+        font-size: 36px;
         margin: 0.5em 0;
     }
-    
+
     h2 {
-        font-size: 24px;
+        font-size: 26px;
     }
-    
-    .box {
-        padding: 25px 15px;
-        font-size: 24px;
-        width: 85%;
-        border-width: 2px;
-        max-height: 80vh;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    
-    .content .blogpost {
-        font-size: 18px; 
-        line-height: 1.8; 
-    }
-    
-    .blogpost ul, .blogpost p {
-        line-height: inherit; 
-        margin-bottom: 1em; 
-    }
-    
-    .blogpost li {
-        margin-bottom: 0.5em;
-    }
-    
+
     .links {
-        font-size: 16px;
+        font-size: 18px;
         margin: 15px 0;
     }
-    
+
     hr {
-        margin-left: 50px;
-        margin-right: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
-    
+
     body {
         background-size: cover;
         background-attachment: scroll;
         padding: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .box {
-        width: 90%;
-        padding: 20px 20px;
-        font-size: 24px;
-    }
-    
-    .content .blogpost {
-        font-size: 24px;
-    }
-
-    h1 {
-        font-size: 32px;
-    }
-    
-    .links {
-        font-size: 14px;
-    }
-    
-    hr {
-        margin-left: 20px;
-        margin-right: 20px;
     }
 }
