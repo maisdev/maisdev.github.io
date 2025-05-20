@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Курсор (ваш существующий код)
     const circle = document.querySelector('.circle');
     const links = document.querySelectorAll('a');
     let mouseX = -100;
