@@ -1,51 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <title>maisdev - general</title>
+    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <script src="index.js"></script>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="ferrari.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>maisdev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            cursor: none;
-        }
-        canvas {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
+      .content {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="circle"></div>
-    <div class="wrapper active-page1">
-        <div class="page page1">
-            <h2 class="scroll">[scroll down.]</h2>
+    <div class="stars" id="stars"></div>
+    <div class="box">
+      <div style="text-align: center">
+        <p><a href="#" onclick="showContent('home')"><h1>maisdev</h1></a></p>
+        <p class="links">
+          <a href="#" onclick="showContent('about')">about</a> ・ 
+          <a href="#" onclick="showContent('blog')">blog</a> ・ 
+          <a href="#" onclick="showContent('github')">github</a> ・ 
+          <a href="#" onclick="showContent('contact')">contact</a>
+        </p>
+      </div>
+      <div id="home" class="content active">
+        <div class="blogpost" style="text-align: center; margin: 0 auto; max-width: 800px;">
+          <br />
+          <br />
+          <p style="text-align: center;">
+            <p style="font-size: 20px;">«mama always said life was like a box of chocolates.</p>
+            <p style="font-size: 20px;">you never know what you're gonna get»</p>
+          </p>
         </div>
-        <div class="page page2">
-            <div class="header content montserrat-fonts">
-                ~maisdev.
-            </div>
-            <div class="content">
-                <span class="Typewriter__wrapper" id="typewriter-text">&nbsp;</span>
-            </div>
-            <div class="popup" id="popup-text">my socials:</div>
-            <div class="links">
-                <a href="https://github.com/miamaimima" target="_blank">[github.]</a>
-                <a href="https://t.me/msdv63" target="_blank">[telegram.]</a>
-                <a href="https://discord.gg/TpM7jDhBMN" target="_blank">[discord channel.]</a>
-            </div>
+      </div>
+      
+
+      <div id="about" class="content">
+        <div class="blogpost">
+          <br />
+          <br />
+          <p>
+            <strong><h2>about me</h2></strong>
+          </p>
+          <p>
+            hello! i'm maisdev, a self-taught developer from Russia with passion for technology and data.
+          </p>
+          <p>
+            my interests include:
+          </p>
+          <ul>
+            <li>data science and machine learning</li>
+            <li>automotive technology</li>
+            <li>open source projects</li>
+          </ul>
+          <p>
+            currently focused on building my skills in Python, SQL, and data analysis tools.
+          </p>
         </div>
+      </div>
+      
+
+      <div id="blog" class="content">
+        <div class="blogpost">
+          <br />
+          <br />
+          <p>
+            <strong><h2>blog</h2></strong>
+            
+          </p>
+          <p>
+           13.04.2025 - development of this site has begun
+          </p>
+         
+        </div>
+      </div>
+      
+
+      <div id="github" class="content">
+        <div class="blogpost">
+          <br />
+          <br />
+          <p>
+            <strong><h2>github projects</h2></strong>
+          </p>
+          <p>
+            Check out my work on gitHub:
+          </p>
+          <p>
+            <a href="https://github.com/maisdev" target="_blank">github.com/maisdev</a>
+          </p>
+        </div>
+      </div>
+      
+
+      <div id="contact" class="content">
+        <div class="blogpost">
+          <br />
+          <br /> 
+          <p>
+            <strong><h2>contact</h2></strong>
+          </p>
+          <p>
+            You can reach me at:
+          </p>
+          <p>
+            email: maissdeveloper@gmail.com<br>
+            telegram: <a href="https://t.me/maisdevv" target="_blank">maisdev</a><br>
+            discord server: <a hred="https://discord.com/invite/TpM7jDhBMN" target="_blank">{maisquad}</a>
+          </p>
+        </div>
+      </div>
     </div>
-    
-    <script src="script.js"></script>
-</body>
+    <script>
+      function showContent(contentId) {
+        document.querySelectorAll('.content').forEach(div => {
+          div.classList.remove('active');
+        });
+        document.getElementById(contentId).classList.add('active');
+        document.title = "maisdev - " + contentId;
+        window.scrollTo({
+            top: -100,
+            left: 0,
+            behavior: 'smooth'
+          })
+      }
+    </script>
+  </body>
 </html>
