@@ -235,3 +235,41 @@ a, button, .wrapper, .popup, .links {
         opacity: 0;
     }
 }
+
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 40px !important;
+    }
+    
+    h2 {
+        font-size: 24px !important;
+    }
+    
+    .box {
+        padding: 15px !important;
+        width: 85% !important;
+        border-width: 2px !important;
+    }
+    
+    .blogpost {
+        padding: 5% !important;
+    }
+    
+    .links {
+        font-size: 16px !important;
+    }
+    
+    hr {
+        margin-left: 50px !important;
+        margin-right: 50px !important;
+    }
+    
+    .circle {
+        display: none !important;
+    }
+    
+    body, html, a, button, .wrapper, .popup, .links {
+        cursor: auto !important;
+    }
+}
