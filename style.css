@@ -109,9 +109,11 @@ hr {
 }
 
 .blogpost {
+    line-height: 1.6;
     padding: 10%;
     line-height: 24px;
     text-align: center;
+    font-size: 16px;
 }
 
 .links {
@@ -243,10 +245,18 @@ hr {
         justify-content: center;
     }
     
-    .blogpost {
-        font-size: 24px;
-        padding: 5%;
-        margin: 0;
+    .content .blogpost {
+        font-size: 18px; 
+        line-height: 1.8; 
+    }
+    
+    .blogpost ul, .blogpost p {
+        line-height: inherit; 
+        margin-bottom: 1em; 
+    }
+    
+    .blogpost li {
+        margin-bottom: 0.5em;
     }
     
     .links {
@@ -272,6 +282,10 @@ hr {
         padding: 20px 10px;
     }
     
+    .content .blogpost {
+        font-size: 16px;
+    }
+
     h1 {
         font-size: 32px;
     }
