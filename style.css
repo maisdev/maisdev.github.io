@@ -12,7 +12,6 @@ html, body {
 }
 
 body {
-    background-image: url("images/comet.jpg");
     background-position: center center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -23,9 +22,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    position: relative;
 }
-
-
 
 .box {
     background-color: #202020;
@@ -38,12 +36,14 @@ body {
     overflow-y: auto;
     position: relative;
     margin: auto;
+    z-index: 1;
 }
 
 h1 {
     font-size: 80px;
     font-family: Silkscreen;
     font-weight: 700;
+    text-align: center;
 }
 
 h2 {
@@ -74,6 +74,7 @@ h4 {
 a {
     text-decoration: none;
     color: #CCCCCC;
+    transition: color 0.3s ease;
 }
 
 a:hover {
@@ -107,19 +108,21 @@ hr {
     border: 3px #5C5C5C solid;
 }
 
-
-
 .blogpost {
     padding: 10%;
     line-height: 24px;
+    text-align: center;
 }
 
 .links {
     font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
 }
 
 .waving-smiley {
     display: flex;
+    justify-content: center;
 }
 
 .waving-smiley:before {
@@ -133,58 +136,6 @@ hr {
     transform-origin: bottom left;
     display: inline-block;
 }
-
-@keyframes waving {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(20deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-
-
-a {
-    text-decoration: none;
-    color: #CCCCCC;
-    transition: color 0.3s ease; 
-    text-decoration: none;
-    transition: color 0.3s ease-out;
-    z-index: 1;
-}
-
-
-a:hover {
-    color: #464646; 
-}
-
-
-body, html {
-    cursor: none; 
-}
-
-
-
-a, button, .wrapper, .popup, .links {
-    cursor: none; 
-}
-
-.circle {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #bbbbbb;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
-}
-
 
 .star {
     position: fixed;
@@ -200,6 +151,7 @@ a, button, .wrapper, .popup, .links {
     pointer-events: none;
     z-index: -1;
     will-change: transform;
+    animation: specialFly linear forwards;
 }
 
 @keyframes float {
@@ -236,76 +188,99 @@ a, button, .wrapper, .popup, .links {
     }
 }
 
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--random-x));
+        opacity: 0;
+    }
+}
+
+@keyframes specialFly {
+    0% {
+        transform: translate(0, 0) rotate(var(--angle));
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--end-x), var(--end-y)) rotate(var(--angle));
+        opacity: 0;
+    }
+}
 
 @media screen and (max-width: 768px) {
     h1 {
-        font-size: 40px !important;
+        font-size: 40px;
         margin: 0.5em 0;
     }
     
     h2 {
-        font-size: 24px !important;
+        font-size: 24px;
     }
     
     .box {
-        padding: 20px 15px !important;
-        width: 85% !important;
-        border-width: 2px !important;
-        min-height: 70vh;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; 
-        margin: 5vh auto; 
-        overflow-y: auto; 
-    }
-    
-    .blogpost {
-        padding: 5% !important;
-        margin: 0;
-        flex-grow: 1; 
+        padding: 25px 15px;
+        width: 85%;
+        border-width: 2px;
+        max-height: 80vh;
+        margin: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
     
+    .blogpost {
+        padding: 5%;
+        margin: 0;
+    }
+    
     .links {
-        font-size: 16px !important;
-        margin: 10px 0;
+        font-size: 16px;
+        margin: 15px 0;
     }
     
     hr {
-        margin-left: 20px !important;
-        margin-right: 20px !important;
-    }
-    
-
-    .circle {
-        display: none !important;
-    }
-    
-    body, html, a, button, .wrapper, .popup, .links {
-        cursor: auto !important;
+        margin-left: 50px;
+        margin-right: 50px;
     }
     
     body {
         background-size: cover;
         background-attachment: scroll;
-        padding: 10px 0;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .box {
+        width: 90%;
+        padding: 20px 10px;
     }
     
-    @media screen and (max-width: 480px) {
-        .box {
-            width: 90% !important;
-            padding: 15px 10px !important;
-        }
-        
-        h1 {
-            font-size: 32px !important;
-        }
-        
-        .links {
-            font-size: 14px !important;
-        }
+    h1 {
+        font-size: 32px;
+    }
+    
+    .links {
+        font-size: 14px;
+    }
+    
+    hr {
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
