@@ -240,6 +240,7 @@ a, button, .wrapper, .popup, .links {
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 40px !important;
+        margin: 0.5em 0;
     }
     
     h2 {
@@ -247,29 +248,64 @@ a, button, .wrapper, .popup, .links {
     }
     
     .box {
-        padding: 15px !important;
+        padding: 20px 15px !important;
         width: 85% !important;
         border-width: 2px !important;
+        min-height: 70vh;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        margin: 5vh auto; 
+        overflow-y: auto; 
     }
     
     .blogpost {
         padding: 5% !important;
+        margin: 0;
+        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .links {
         font-size: 16px !important;
+        margin: 10px 0;
     }
     
     hr {
-        margin-left: 50px !important;
-        margin-right: 50px !important;
+        margin-left: 20px !important;
+        margin-right: 20px !important;
     }
     
+
     .circle {
         display: none !important;
     }
     
     body, html, a, button, .wrapper, .popup, .links {
         cursor: auto !important;
+    }
+    
+    body {
+        background-size: cover;
+        background-attachment: scroll;
+        padding: 10px 0;
+    }
+    
+    @media screen and (max-width: 480px) {
+        .box {
+            width: 90% !important;
+            padding: 15px 10px !important;
+        }
+        
+        h1 {
+            font-size: 32px !important;
+        }
+        
+        .links {
+            font-size: 14px !important;
+        }
     }
 }
