@@ -113,7 +113,7 @@ hr {
     padding: 10%;
     line-height: 24px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .links {
@@ -236,6 +236,7 @@ hr {
     
     .box {
         padding: 25px 15px;
+        font-size: 24px;
         width: 85%;
         border-width: 2px;
         max-height: 80vh;
@@ -279,11 +280,12 @@ hr {
 @media screen and (max-width: 480px) {
     .box {
         width: 90%;
-        padding: 20px 10px;
+        padding: 20px 20px;
+        font-size: 24px;
     }
     
     .content .blogpost {
-        font-size: 16px;
+        font-size: 24px;
     }
 
     h1 {
