@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     starsContainer.style.zIndex = '-1';
     document.body.appendChild(starsContainer);
 
-    const starCount = 50;
+    const starCount = 170;
     const starPool = [];
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
