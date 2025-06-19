@@ -54,7 +54,8 @@ body {
 
 body {
     font-size: 100%;
-    background: linear-gradient(211deg, rgba(124,68,79,1) 0%, rgba(159,82,85,1) 49%, rgba(225,106,84,1) 100%);
+    background: #00a8db;
+    background: linear-gradient(90deg, rgba(0, 168, 219, 1) 0%, rgba(41, 204, 204, 1) 34%, rgba(0, 212, 255, 1) 100%);
     animation: gradient 10s ease infinite;
     background-size: 200% 200%;
 }
