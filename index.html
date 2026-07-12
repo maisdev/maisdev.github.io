@@ -1,55 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/x-icon" href="ferrari.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>maisdev</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            cursor: none;
-        }
-        canvas {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050b18">
+  <meta name="description" content="maisdev — разработчик цифровых продуктов и Telegram-сервисов.">
+  <title>maisdev — digital developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="circle"></div>
-    <div class="wrapper active-page1">
-        <div class="page page1">
-            <h2 class="scroll">[scroll down.]</h2>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="maisdev — на главную">
+      <span class="brand-mark">m</span>
+      <span>maisdev</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      <a href="#about">Обо мне</a>
+      <a href="#work">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <a class="header-link" href="https://t.me/mssvr" target="_blank" rel="noreferrer">
+      Telegram
+      <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5 15 15 5M7 5h8v8"/></svg>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <canvas class="hero-grid" data-grid aria-hidden="true"></canvas>
+      <canvas class="cube-scene" data-cube aria-hidden="true"></canvas>
+      <div class="hero-glow" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow reveal">Разработчик · Ростов-на-Дону</p>
+        <h1 class="hero-title" aria-label="maisdev">
+          <span class="title-line" data-scramble="mais">mais</span>
+          <span class="title-line title-accent" data-scramble="dev">dev</span>
+        </h1>
+        <p class="hero-copy reveal">Создаю цифровые продукты и Telegram-сервисы, в которых сложная логика ощущается простой.</p>
+        <div class="hero-actions reveal">
+          <a class="button button-primary" href="#work">Смотреть проекты</a>
+          <a class="button button-ghost" href="https://t.me/mssvr" target="_blank" rel="noreferrer">
+            Написать мне
+            <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5 15 15 5M7 5h8v8"/></svg>
+          </a>
         </div>
-        <div class="page page2">
-            <div class="header content montserrat-fonts">
-                .maisdev.
-            </div>
-            <div class="content">
-                <span class="Typewriter__wrapper" id="typewriter-text">&nbsp;</span>
-            </div>
-            <div class="popup" id="popup-text">my socials:</div>
-            <div class="links">
-                <a href="https://t.me/mssvr" target="_blank">[main channel.]</a>
-                <a href="https://t.me/starlifybot" target="_blank">[my telegram stars selling bot.]</a>
-                <a href="https://discord.gg/TpM7jDhBMN" target="_blank">[discord channel.]</a>
-            </div>
+      </div>
+
+      <div class="hero-meta reveal">
+        <span>Digital products</span>
+        <span>GMT +3</span>
+        <span>Open to ideas</span>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="Прокрутить к разделу обо мне">
+        <span>Scroll</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="about-tgs" aria-hidden="true">
+        <div class="tgs-fallback"><span></span><span></span><span></span></div>
+        <div class="tgs-animation" data-tgs></div>
+      </div>
+      <div class="section-heading reveal">
+        <span class="section-index">01</span>
+        <p>Коротко обо мне</p>
+      </div>
+      <div class="about-layout">
+        <h2 class="about-title reveal">Превращаю идеи<br>в работающие <span>продукты.</span></h2>
+        <div class="about-copy reveal">
+          <p>Я maisdev, разработчик из Ростова-на-Дону. Проектирую и запускаю сервисы вокруг Telegram, автоматизации и понятного пользовательского опыта.</p>
+          <p class="muted">Здесь скоро появится больше личной информации, опыта и деталей о подходе к работе.</p>
         </div>
-    </div>
-    
-    <script src="script.js"></script>
+      </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Telegram</span><i></i><span>Development</span><i></i><span>Automation</span><i></i><span>Product design</span><i></i>
+          <span>Telegram</span><i></i><span>Development</span><i></i><span>Automation</span><i></i><span>Product design</span><i></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="work section" id="work">
+      <div class="section-heading reveal">
+        <span class="section-index">02</span>
+        <p>Избранные проекты</p>
+      </div>
+      <div class="projects">
+        <a class="project reveal" href="https://t.me/starlifybot" target="_blank" rel="noreferrer">
+          <span class="project-number">01</span>
+          <div class="project-main">
+            <p>Telegram product</p>
+            <h3>Starlify</h3>
+          </div>
+          <p class="project-description">Сервис для покупки Telegram Stars с быстрым и понятным сценарием.</p>
+          <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"/></svg></span>
+        </a>
+        <div class="project reveal">
+          <span class="project-number">02</span>
+          <div class="project-main">
+            <p>New work</p>
+            <h3>Next project</h3>
+          </div>
+          <p class="project-description">Новый продукт в разработке. Подробности появятся после запуска.</p>
+          <span class="project-status">Скоро</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="contact-orbit" aria-hidden="true"><span></span></div>
+      <div class="section-heading reveal">
+        <span class="section-index">03</span>
+        <p>Всегда на связи</p>
+      </div>
+      <p class="contact-kicker reveal">Есть идея?</p>
+      <a class="contact-title reveal" href="https://t.me/mssvr" target="_blank" rel="noreferrer">
+        Давайте обсудим
+        <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M6 26 26 6M10 6h16v16"/></svg>
+      </a>
+      <div class="contact-footer reveal">
+        <p>Проекты, сотрудничество<br>и хорошие идеи.</p>
+        <div class="social-links">
+          <a href="https://t.me/mssvr" target="_blank" rel="noreferrer">Telegram</a>
+          <a href="https://discord.gg/TpM7jDhBMN" target="_blank" rel="noreferrer">Discord</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><span class="brand-mark">m</span><span>maisdev</span></a>
+    <p>© <span data-year></span> · Сделано с вниманием к деталям</p>
+    <a href="#top">Наверх ↑</a>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
-
-
-
-
