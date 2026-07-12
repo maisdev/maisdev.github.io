@@ -202,7 +202,7 @@ function initCube() {
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    rig.position.x = width < 800 ? 1.35 : 2.8;
+    rig.position.x = width < 500 ? 1.05 : width < 800 ? 1.15 : 2.8;
     baseRigY = width < 800 ? 1.05 : .1;
     rig.position.y = baseRigY;
     rig.scale.setScalar(width < 500 ? .66 : width < 800 ? .8 : .9);
