@@ -69,41 +69,29 @@ function initCube() {
   rig.add(cube);
   scene.add(rig);
 
-  const plastic = new THREE.MeshStandardMaterial({ color: 0x010307, roughness: .22, metalness: .68 });
-  const stickerColors = {
-    right: 0x183a68,
-    left: 0x0b1729,
-    top: 0x23354f,
-    bottom: 0x03070d,
-    front: 0x10243e,
-    back: 0x070d17
+  const cubeletGeometry = new THREE.BoxGeometry(.955, .955, .955);
+  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: 0x010308, roughness: .2, metalness: .7, clearcoat: .9, clearcoatRoughness: .18 });
+  const faceMaterials = {
+    right: new THREE.MeshPhysicalMaterial({ color: 0x102b50, roughness: .16, metalness: .72, clearcoat: 1, clearcoatRoughness: .12 }),
+    left: new THREE.MeshPhysicalMaterial({ color: 0x071426, roughness: .18, metalness: .76, clearcoat: 1, clearcoatRoughness: .14 }),
+    top: new THREE.MeshPhysicalMaterial({ color: 0x1b3557, roughness: .14, metalness: .72, clearcoat: 1, clearcoatRoughness: .1 }),
+    bottom: innerMaterial,
+    front: new THREE.MeshPhysicalMaterial({ color: 0x0b203c, roughness: .16, metalness: .75, clearcoat: 1, clearcoatRoughness: .12 }),
+    back: innerMaterial
   };
-  const stickerGeometry = new THREE.PlaneGeometry(.77, .77);
-  const cubeletGeometry = new THREE.BoxGeometry(.91, .91, .91, 2, 2, 2);
-
-  function addSticker(parent, side, color) {
-    const sticker = new THREE.Mesh(stickerGeometry, new THREE.MeshStandardMaterial({ color, roughness: .2, metalness: .7 }));
-    const offset = .461;
-    if (side === "right") { sticker.position.x = offset; sticker.rotation.y = Math.PI / 2; }
-    if (side === "left") { sticker.position.x = -offset; sticker.rotation.y = -Math.PI / 2; }
-    if (side === "top") { sticker.position.y = offset; sticker.rotation.x = -Math.PI / 2; }
-    if (side === "bottom") { sticker.position.y = -offset; sticker.rotation.x = Math.PI / 2; }
-    if (side === "front") sticker.position.z = offset;
-    if (side === "back") { sticker.position.z = -offset; sticker.rotation.y = Math.PI; }
-    parent.add(sticker);
-  }
 
   for (let x = -1; x <= 1; x += 1) {
     for (let y = -1; y <= 1; y += 1) {
       for (let z = -1; z <= 1; z += 1) {
-        const cubelet = new THREE.Mesh(cubeletGeometry, plastic);
+        const cubelet = new THREE.Mesh(cubeletGeometry, [
+          x === 1 ? faceMaterials.right : innerMaterial,
+          x === -1 ? faceMaterials.left : innerMaterial,
+          y === 1 ? faceMaterials.top : innerMaterial,
+          y === -1 ? faceMaterials.bottom : innerMaterial,
+          z === 1 ? faceMaterials.front : innerMaterial,
+          z === -1 ? faceMaterials.back : innerMaterial
+        ]);
         cubelet.position.set(x, y, z);
-        if (x === 1) addSticker(cubelet, "right", stickerColors.right);
-        if (x === -1) addSticker(cubelet, "left", stickerColors.left);
-        if (y === 1) addSticker(cubelet, "top", stickerColors.top);
-        if (y === -1) addSticker(cubelet, "bottom", stickerColors.bottom);
-        if (z === 1) addSticker(cubelet, "front", stickerColors.front);
-        if (z === -1) addSticker(cubelet, "back", stickerColors.back);
         cube.add(cubelet);
       }
     }
