@@ -69,27 +69,84 @@ function initCube() {
   rig.add(cube);
   scene.add(rig);
 
-  const cubeletGeometry = new THREE.BoxGeometry(.955, .955, .955);
-  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: 0x010308, roughness: .2, metalness: .7, clearcoat: .9, clearcoatRoughness: .18 });
-  const faceMaterials = {
-    right: new THREE.MeshPhysicalMaterial({ color: 0x102b50, roughness: .16, metalness: .72, clearcoat: 1, clearcoatRoughness: .12 }),
-    left: new THREE.MeshPhysicalMaterial({ color: 0x071426, roughness: .18, metalness: .76, clearcoat: 1, clearcoatRoughness: .14 }),
-    top: new THREE.MeshPhysicalMaterial({ color: 0x1b3557, roughness: .14, metalness: .72, clearcoat: 1, clearcoatRoughness: .1 }),
-    bottom: innerMaterial,
-    front: new THREE.MeshPhysicalMaterial({ color: 0x0b203c, roughness: .16, metalness: .75, clearcoat: 1, clearcoatRoughness: .12 }),
-    back: innerMaterial
-  };
+  const cubeletGeometry = THREE.RoundedBoxGeometry
+    ? new THREE.RoundedBoxGeometry(.94, .94, .94, 6, .12)
+    : new THREE.BoxGeometry(.94, .94, .94);
+  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: 0x010307, roughness: .28, metalness: .72, clearcoat: .75, clearcoatRoughness: .2 });
+  const materialCache = new Map();
+
+  function createSurfaceTexture(pattern, tone) {
+    const surface = document.createElement("canvas");
+    surface.width = 128;
+    surface.height = 128;
+    const surfaceCtx = surface.getContext("2d");
+    const tones = ["#03070c", "#050b13", "#07101b", "#091525"];
+    surfaceCtx.fillStyle = tones[tone % tones.length];
+    surfaceCtx.fillRect(0, 0, 128, 128);
+    surfaceCtx.strokeStyle = "rgba(111, 136, 168, .16)";
+    surfaceCtx.fillStyle = "rgba(125, 148, 178, .15)";
+    surfaceCtx.lineWidth = 1;
+
+    if (pattern === 1) {
+      for (let y = 7; y < 128; y += 9) for (let x = 7; x < 128; x += 9) {
+        surfaceCtx.beginPath(); surfaceCtx.arc(x, y, 1.35, 0, Math.PI * 2); surfaceCtx.fill();
+      }
+    } else if (pattern === 2) {
+      for (let x = 4; x < 128; x += 8) { surfaceCtx.beginPath(); surfaceCtx.moveTo(x, 0); surfaceCtx.lineTo(x, 128); surfaceCtx.stroke(); }
+    } else if (pattern === 3) {
+      for (let y = 5; y < 128; y += 7) { surfaceCtx.beginPath(); surfaceCtx.moveTo(0, y); surfaceCtx.lineTo(128, y); surfaceCtx.stroke(); }
+    } else if (pattern === 4) {
+      for (let offset = -128; offset < 256; offset += 12) { surfaceCtx.beginPath(); surfaceCtx.moveTo(offset, 0); surfaceCtx.lineTo(offset - 128, 128); surfaceCtx.stroke(); }
+    } else if (pattern === 5) {
+      for (let y = 0; y < 128; y += 10) for (let x = 0; x < 128; x += 10) surfaceCtx.strokeRect(x + .5, y + .5, 9, 9);
+    } else if (pattern === 6) {
+      for (let index = 0; index < 900; index += 1) {
+        const shade = 45 + Math.floor(Math.random() * 45);
+        surfaceCtx.fillStyle = `rgba(${shade}, ${shade + 8}, ${shade + 18}, ${Math.random() * .12})`;
+        surfaceCtx.fillRect(Math.random() * 128, Math.random() * 128, 1.4, 1.4);
+      }
+    } else {
+      const sheen = surfaceCtx.createLinearGradient(0, 0, 128, 128);
+      sheen.addColorStop(0, "rgba(116, 142, 177, .08)");
+      sheen.addColorStop(.48, "rgba(0, 0, 0, 0)");
+      sheen.addColorStop(1, "rgba(117, 147, 186, .035)");
+      surfaceCtx.fillStyle = sheen;
+      surfaceCtx.fillRect(0, 0, 128, 128);
+    }
+
+    const texture = new THREE.CanvasTexture(surface);
+    texture.encoding = THREE.sRGBEncoding;
+    texture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
+    return texture;
+  }
+
+  function surfaceMaterial(side, first, second) {
+    const sideIndex = ["right", "left", "top", "bottom", "front", "back"].indexOf(side);
+    const pattern = Math.abs(sideIndex * 5 + first * 3 + second * 7 + 11) % 7;
+    const tone = Math.abs(sideIndex + first * 2 + second * 3 + 8) % 4;
+    const key = `${side}:${first}:${second}`;
+    if (!materialCache.has(key)) {
+      materialCache.set(key, new THREE.MeshPhysicalMaterial({
+        map: createSurfaceTexture(pattern, tone),
+        roughness: .2 + pattern * .025,
+        metalness: .58,
+        clearcoat: .9,
+        clearcoatRoughness: .14
+      }));
+    }
+    return materialCache.get(key);
+  }
 
   for (let x = -1; x <= 1; x += 1) {
     for (let y = -1; y <= 1; y += 1) {
       for (let z = -1; z <= 1; z += 1) {
         const cubelet = new THREE.Mesh(cubeletGeometry, [
-          x === 1 ? faceMaterials.right : innerMaterial,
-          x === -1 ? faceMaterials.left : innerMaterial,
-          y === 1 ? faceMaterials.top : innerMaterial,
-          y === -1 ? faceMaterials.bottom : innerMaterial,
-          z === 1 ? faceMaterials.front : innerMaterial,
-          z === -1 ? faceMaterials.back : innerMaterial
+          x === 1 ? surfaceMaterial("right", y, z) : innerMaterial,
+          x === -1 ? surfaceMaterial("left", y, z) : innerMaterial,
+          y === 1 ? surfaceMaterial("top", x, z) : innerMaterial,
+          y === -1 ? surfaceMaterial("bottom", x, z) : innerMaterial,
+          z === 1 ? surfaceMaterial("front", x, y) : innerMaterial,
+          z === -1 ? surfaceMaterial("back", x, y) : innerMaterial
         ]);
         cubelet.position.set(x, y, z);
         cube.add(cubelet);
