@@ -69,20 +69,20 @@ function initCube() {
   rig.add(cube);
   scene.add(rig);
 
-  const plastic = new THREE.MeshStandardMaterial({ color: 0x050b16, roughness: .3, metalness: .42 });
+  const plastic = new THREE.MeshStandardMaterial({ color: 0x010307, roughness: .22, metalness: .68 });
   const stickerColors = {
-    right: 0x4d82ff,
-    left: 0x2553c7,
-    top: 0xf3f7ff,
-    bottom: 0x13274a,
-    front: 0x55d6d0,
-    back: 0x1c3470
+    right: 0x183a68,
+    left: 0x0b1729,
+    top: 0x23354f,
+    bottom: 0x03070d,
+    front: 0x10243e,
+    back: 0x070d17
   };
   const stickerGeometry = new THREE.PlaneGeometry(.77, .77);
   const cubeletGeometry = new THREE.BoxGeometry(.91, .91, .91, 2, 2, 2);
 
   function addSticker(parent, side, color) {
-    const sticker = new THREE.Mesh(stickerGeometry, new THREE.MeshStandardMaterial({ color, roughness: .26, metalness: .12 }));
+    const sticker = new THREE.Mesh(stickerGeometry, new THREE.MeshStandardMaterial({ color, roughness: .2, metalness: .7 }));
     const offset = .461;
     if (side === "right") { sticker.position.x = offset; sticker.rotation.y = Math.PI / 2; }
     if (side === "left") { sticker.position.x = -offset; sticker.rotation.y = -Math.PI / 2; }
@@ -110,11 +110,11 @@ function initCube() {
   }
 
   cube.rotation.set(-.5, .67, .12);
-  scene.add(new THREE.HemisphereLight(0xcbdcff, 0x071127, 1.45));
-  const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+  scene.add(new THREE.HemisphereLight(0x7792b9, 0x010307, .75));
+  const keyLight = new THREE.DirectionalLight(0xb9cee9, 1.65);
   keyLight.position.set(5, 7, 8);
   scene.add(keyLight);
-  const blueLight = new THREE.PointLight(0x3d78ff, 2.8, 18);
+  const blueLight = new THREE.PointLight(0x174d91, 1.8, 18);
   blueLight.position.set(-5, -2, 5);
   scene.add(blueLight);
 
@@ -151,18 +151,6 @@ function initCube() {
 }
 window.addEventListener("load", initCube);
 
-const cursor = document.querySelector(".cursor");
-if (window.matchMedia("(pointer: fine)").matches) {
-  window.addEventListener("pointermove", (event) => {
-    cursor.style.opacity = "1";
-    cursor.style.transform = `translate(${event.clientX - cursor.offsetWidth / 2}px, ${event.clientY - cursor.offsetWidth / 2}px)`;
-  }, { passive: true });
-  document.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("mouseenter", () => cursor.classList.add("active"));
-    link.addEventListener("mouseleave", () => cursor.classList.remove("active"));
-  });
-}
-
 async function loadTgs() {
   const container = document.querySelector("[data-tgs]");
   if (!container || !window.pako || !window.lottie) return;
@@ -185,22 +173,3 @@ async function loadTgs() {
   }
 }
 window.addEventListener("load", loadTgs);
-
-if (!reducedMotion) {
-  const chars = "01<>/{}";
-  document.querySelectorAll("[data-scramble]").forEach((element, elementIndex) => {
-    const target = element.dataset.scramble;
-    let frame = 0;
-    const start = 180 + elementIndex * 180;
-    setTimeout(() => {
-      const timer = setInterval(() => {
-        element.textContent = target.split("").map((char, index) => index < frame / 3 ? char : chars[Math.floor(Math.random() * chars.length)]).join("");
-        frame += 1;
-        if (frame >= target.length * 3) {
-          element.textContent = target;
-          clearInterval(timer);
-        }
-      }, 55);
-    }, start);
-  });
-}
